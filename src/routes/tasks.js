@@ -1,4 +1,5 @@
 import { Hono } from 'hono'
+import { getDb } from '../data/db.js'
 import {
   deleteTask,
   getTaskById,
@@ -13,7 +14,8 @@ const tasks = new Hono()
 
 tasks.get('/:id', async (c) => {
   const id = parseIdParam(c.req.param('id'))
-  const task = await getTaskById(id)
+  const db = getDb(c.env.DB)
+  const task = await getTaskById(db, id)
 
   if (!task) {
     throw new ApiError(404, 'NOT_FOUND', 'Task not found.')
@@ -36,7 +38,8 @@ tasks.patch('/:id', async (c) => {
     )
   }
 
-  const updatedTask = await updateTask(id, payload)
+  const db = getDb(c.env.DB)
+  const updatedTask = await updateTask(db, id, payload)
 
   if (!updatedTask) {
     throw new ApiError(404, 'NOT_FOUND', 'Task not found.')
@@ -47,7 +50,8 @@ tasks.patch('/:id', async (c) => {
 
 tasks.delete('/:id', async (c) => {
   const id = parseIdParam(c.req.param('id'))
-  const deleted = await deleteTask(id)
+  const db = getDb(c.env.DB)
+  const deleted = await deleteTask(db, id)
 
   if (!deleted) {
     throw new ApiError(404, 'NOT_FOUND', 'Task not found.')
