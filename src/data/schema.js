@@ -19,7 +19,7 @@ export const tasks = sqliteTable(
   'tasks',
   {
     id: integer('id').primaryKey({ autoIncrement: true }),
-    project_id: integer('project_id')
+    projectId: integer('project_id')
       .notNull()
       .references(() => projects.id, { onDelete: 'cascade' }),
     title: text('title').notNull(),
@@ -31,8 +31,8 @@ export const tasks = sqliteTable(
   (table) => [
     check(
       'tasks_status_check',
-      sql`${table.status} in ('todo', 'in_progress', 'done')`,
+      sql`${table.status} IN ('todo', 'in_progress', 'done')`,
     ),
-    index('tasks_project_id_index').on(table.project_id),
+    index('idx_tasks_project_id').on(table.projectId),
   ],
 )

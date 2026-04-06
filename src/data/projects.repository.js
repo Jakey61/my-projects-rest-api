@@ -13,7 +13,7 @@ export async function listProjects(db) {
   return db.select().from(projects).orderBy(asc(projects.id))
 }
 
-export async function getProject(db, id) {
+export async function getProjectById(db, id) {
   const [project] = await db.select().from(projects).where(eq(projects.id, id))
   return project || null
 }
