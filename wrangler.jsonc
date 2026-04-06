@@ -3,6 +3,13 @@
   "name": "my-projects-rest-api",
   "main": "src/index.js",
   "compatibility_date": "2026-03-30",
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "projects_db",
+      "database_id": "3cc76869-96c5-43d3-b66f-292c0e878132",
+    },
+  ],
   // "compatibility_flags": [
   //   "nodejs_compat"
   // ],
