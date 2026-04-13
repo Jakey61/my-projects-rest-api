@@ -8,6 +8,13 @@
       "when": 1775445502544,
       "tag": "0000_gigantic_tyger_tiger",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1776038974286,
+      "tag": "0001_right_preak",
+      "breakpoints": true
     }
   ]
 }
